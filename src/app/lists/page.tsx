@@ -1,8 +1,14 @@
 import React from 'react'
+import ListTabs from './ListTabs'
+import { fetchCurrentUserLikeIds, fetchLikedMembers } from '../actions/likeActions'
 
-const Lists = () => {
+const Lists = async ({ searchParams }: { searchParams: { type: string } }) => {
+  const likeIds = await fetchCurrentUserLikeIds ()
+  const members = await fetchLikedMembers()
   return (
-    <div>Lists</div>
+    <div>
+      <ListTabs members={members} likeIds={likeIds} />
+    </div>
   )
 }
 
